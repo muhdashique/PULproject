@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Fuel Rates</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+
+    </div>
+    <div>
+        <a href="{% url 'add_gallery' %}">Add New Gallery Item</a>
+
+    </div>
+    <div class="container mt-5">
+        <h2>Admin Panel - Manage Fuel Rates</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Fuel Rate</button>
+        </form>
+        
+        <h3 class="mt-4">Fuel Rates List</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Fuel Rate</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rate in fuel_rates %}
+                <tr>
+                    <td>{{ rate.country }}</td>
+                    <td>{{ rate.fuel_rate }}</td>
+                    <td>
+                        <a href="{% url 'edit_fuel_rate' rate.pk %}" class="btn btn-primary mt-3">Edit</a>
+                        <a href="{% url 'delete_fuel_rate' rate.pk %}" class="btn btn-danger mt-3">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No fuel rates available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

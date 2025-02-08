@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- gallery.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Gallery</h1>
+    <div class="gallery-section">
+        {% for gallery in galleries %}
+            <div class="gallery-item">
+                <img src="{{ gallery.image.url }}" alt="{{ gallery.title }}">
+                <h3>{{ gallery.title }}</h3>
+                <p>{{ gallery.description }}</p>
+                <a href="{% url 'edit_gallery' gallery.pk %}">Edit</a>
+                <a href="{% url 'delete_gallery' gallery.pk %}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+</body>
+</html>

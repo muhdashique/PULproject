@@ -1,0 +1,515 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Energy Solutions</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      /* backdrop-filter: blur(10px); */
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      width: 20px;
+      height: 20px;
+      /* background: #ff9f43; */
+      border-radius: 30%;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slider-container {
+      height: 90vh;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .slider-buttons {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .slider-dot.active {
+      background: white;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      color: white;
+      font-size: 24px;
+      transition: background 0.3s ease;
+    }
+
+    .slider-arrow:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .slider-arrow.prev {
+      left: 20px;
+    }
+
+    .slider-arrow.next {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .navbar {
+        padding: 15px 20px;
+      }
+    }
+
+
+    /* fuel pricing section */
+    .hero-section {
+  position: relative;
+  height: 80vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://forgedcomponents.com/wp-content/uploads/2021/10/oil-refinery-purpose-crude-oil-products.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  max-width: 800px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.service-card {
+  background-color: rgba(207, 181, 59, 0.85);
+  padding: 2rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.service-title {
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.consult-button {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: white;
+  color: #333;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.consult-button:hover {
+  background-color: #f0f0f0;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* fuel pricing */
+.grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-text {
+            font-size: 16px;
+            color: #555;
+        }
+
+
+        /* about section */
+        .clean-energy-section {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    position: relative;
+  }
+
+  .content-wrapper {
+    flex: 1;
+    max-width: 500px;
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: #333;
+  }
+
+  .description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  .image-credit {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+  }
+
+  .learn-more-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background-color: #b5a264;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .learn-more-btn:hover {
+    background-color: #a08f56;
+  }
+
+  .image-wrapper {
+    position: relative;
+    flex: 1;
+  }
+
+  .background-square {
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    background-color: #b5a264;
+    right: -40px;
+    top: -40px;
+    z-index: 1;
+  }
+
+  .main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 768px) {
+    .clean-energy-section {
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+
+    .content-wrapper {
+      padding-right: 0;
+      margin-bottom: 40px;
+    }
+
+    .background-square {
+      right: -20px;
+      top: -20px;
+    }
+  }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="flex items-center space-x-2">
+        <img src="{% static 'images\logo.png' %}" alt="Logo" class="w-12 h-12 rounded-full" style="height: 150px; width: 150px;">
+      </div>
+      <!-- <div class="logo-text">ROYALLINKS</div> -->
+    </a>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="#">gallery</a>
+      <a href="#">Contact</a>
+      <div class="text-gray-600 mt-2" style="color: rgb(255, 255, 255);">
+        <p class="text-sm"><i class="fas fa-phone-alt"></i> 8129139506</p>
+        <p class="text-sm"><i class="fas fa-envelope"></i> muhdashiquem@gmail.com</p>
+      </div>
+      <a href="{% url 'login' %}">login</a>
+
+    </div>
+  </nav>
+
+  <div class="slider-container">
+    <div class="slide" style="transform: translateX(0%)">
+      <img src="https://t4.ftcdn.net/jpg/02/28/08/93/360_F_228089326_QInWWQoCLv83KPEvxHYbXWTg5NMwH6wX.jpg" alt="Luxury home 1">
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide" style="transform: translateX(100%)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyZG0G6VHL80bMecVHhVdt-msjS10QlaOJIKe8xGlW8I6P0rq0pLWcxZdRA5haq3LIfTI&usqp=CAU" alt="Luxury home 2">
+      <div class="slide-overlay"></div>
+    </div>
+    <div class="slide" style="transform: translateX(200%)">
+      <img src="https://t3.ftcdn.net/jpg/06/57/24/42/360_F_657244293_GcaYUU4kkfAcZJNZuQPsxiLMxsypQZwn.jpg" alt="Luxury home 3">
+      <div class="slide-overlay"></div>
+    </div>
+
+    <div class="slider-arrow prev" onclick="moveSlide(-1)">❮</div>
+    <div class="slider-arrow next" onclick="moveSlide(1)">❯</div>
+
+    <div class="slider-buttons">
+      <div class="slider-dot active" onclick="goToSlide(0)"></div>
+      <div class="slider-dot" onclick="goToSlide(1)"></div>
+      <div class="slider-dot" onclick="goToSlide(2)"></div>
+    </div>
+  </div>
+
+  
+    <!-- <h2 class="mb-4">Fuel Rates</h2>
+    
+    <div class="row">
+        {% for rate in fuel_rates %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ rate.country }}</h5>
+                    <p class="card-text">Fuel Rate: {{ rate.fuel_rate }} per liter</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No fuel rates available.</p>
+        </div>
+        {% endfor %}
+    </div> -->
+</div>
+  
+
+
+<section class="hero-section">
+    <h1 class="hero-title">Fuel Rates</h1>
+
+    <div class="services-grid">
+        {% for rate in fuel_rates %}
+        <div class="service-card">
+            <h5 class="card-title">{{ rate.country }}</h5>
+            <p class="card-text">Fuel Rate: {{ rate.fuel_rate }} per liter</p>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No fuel rates available.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="consult-button">GET FREE CONSULT</button>
+   
+</section>
+
+
+<section class="clean-energy-section">
+  <div class="content-wrapper">
+    <h2 class="title">Clean Energy</h2>
+    <p class="description">Power Used Lubricants has been a prominent player in the field of power-used lubricants in the UAE since 2009. We specialize in supplying high-quality lubricants to renowned establishments and prestigious projects. Over the years, we have established ourselves as one of the most reliable suppliers of power-used lubricants, offering products that meet the highest standards of performance and reliability.</p>
+    <a href="#" class="learn-more-btn">LEARN MORE</a>
+  </div>
+  <div class="image-wrapper">
+    <div class="background-square"></div>
+    <img src="https://img.freepik.com/premium-photo/tanker-truck-refinery_71835-4615.jpg" alt="Mother and child near solar panels" class="main-image">
+  </div>
+</section>
+
+
+
+
+
+
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+      });
+      
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function moveSlide(direction) {
+      currentSlide = (currentSlide + direction + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlides();
+    }
+
+    // Auto-slide every 5 seconds
+    setInterval(() => moveSlide(1), 5000);
+  </script>
+</body>
+</html>
