@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Image</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 50px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #555;
+        }
+
+        .delete-confirmation {
+            background-color: #fff;
+            padding: 30px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .delete-confirmation img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #c0392b;
+        }
+
+        .cancel-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #3498db;
+        }
+
+        .cancel-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .delete-confirmation {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="delete-confirmation">
+        <h2>Are you sure you want to delete this image?</h2>
+        <p><strong>{{ image.title }}</strong></p>
+        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="button">Yes, Delete</button>
+        </form>
+
+        <a href="{% url 'add_image' %}" class="cancel-link">Cancel</a>
+    </div>
+
+    <script>
+        // Add some JS to show a confirmation prompt for deletion
+        const deleteButton = document.querySelector('.button');
+        
+        deleteButton.addEventListener('click', function(event) {
+            const confirmation = confirm("Are you sure you want to delete this image?");
+            if (!confirmation) {
+                event.preventDefault(); // Prevent form submission if user cancels
+            }
+        });
+    </script>
+
+</body>
+</html>

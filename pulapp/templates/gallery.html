@@ -1,27 +1,319 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: rgb(0, 0, 0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            position: relative;
+            padding: 3rem 0;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .discount-badge {
+            background-color: #4CAF50;
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #FFD700;
+            color: black;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .food-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .food-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .featured-dish {
+            background-color: #222;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .featured-dish-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .featured-dish-image {
+            flex: 1;
+        }
+
+        .featured-dish-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .featured-dish-info {
+            flex: 1;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .food-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .food-description {
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .decorative {
+            position: absolute;
+            z-index: 1;
+        }
+
+        .leaf {
+            width: 30px;
+            height: 30px;
+            background-color: #4CAF50;
+            opacity: 0.5;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+
+            .featured-dish-content {
+                flex-direction: column;
+            }
+        }
+        /* gallery */
+         /* General Styling */
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 50px;
+        }
+
+        /* Food Grid Layout */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust number of columns based on screen width */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image p {
+            margin-top: 10px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .image p:first-of-type {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Empty State */
+        .food-grid p {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+            grid-column: span 3;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 600px) {
+            .food-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .image p {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- gallery.html -->
-{% extends 'base.html' %}
-{% block content %}
-    <h1>Gallery</h1>
-    <div class="gallery-section">
-        {% for gallery in galleries %}
-            <div class="gallery-item">
-                <img src="{{ gallery.image.url }}" alt="{{ gallery.title }}">
-                <h3>{{ gallery.title }}</h3>
-                <p>{{ gallery.description }}</p>
-                <a href="{% url 'edit_gallery' gallery.pk %}">Edit</a>
-                <a href="{% url 'delete_gallery' gallery.pk %}">Delete</a>
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="discount-badge">40%</div>
+                <h1 class="hero-title">Where every ingredient tells a story</h1>
+                <a href="#" class="hero-button">Order Now</a>
             </div>
-        {% endfor %}
+            <div class="hero-image">
+                <img src="https://swarajya.gumlet.io/swarajya/2023-09/acccf079-945a-432b-9a69-add677495c81/Par_1_d126a035a7cc78dc71be6d088d.jpg?w=1200&h=675&auto=format%2Ccompress&fit=max&enlarge=true" alt="Delicious main dish">
+            </div>
+        </section>
+
+        <div class="food-grid">
+            <div class="food-item">
+                <img src="https://www.houstoninjurylawyer.com/wp-content/uploads/2024/08/Two-Workers-at-an-Oil-Refinery.-Oil-Refineries-in-the-U.S.png" alt="Food 1">
+            </div>
+            <div class="food-item">
+                <img src="https://www.houstoninjurylawyer.com/wp-content/uploads/2024/08/Two-Workers-at-an-Oil-Refinery.-Oil-Refineries-in-the-U.S.png" alt="Food 2">
+            </div>
+            <div class="food-item">
+                <img src="https://www.houstoninjurylawyer.com/wp-content/uploads/2024/08/Two-Workers-at-an-Oil-Refinery.-Oil-Refineries-in-the-U.S.png" alt="Food 3">
+            </div>
+        </div>
+
+        <div class="featured-dish">
+            <div class="featured-dish-content">
+                <div class="featured-dish-info">
+                    <div class="price">$27</div>
+                    <h2 class="food-title">Premium Steak</h2>
+                    <p class="food-description">
+                        Perfectly grilled to your preference, our premium cut steak is served with seasonal vegetables and house-made sauce. A true culinary masterpiece that combines traditional techniques with modern presentation.
+                    </p>
+                </div>
+                <div class="featured-dish-image">
+                    <img src="https://www.petrosync.com/blog/wp-content/uploads/2024/01/oil-refinery-in-oil-and-gas-industry.png" alt="Featured steak dish">
+                </div>
+            </div>
+        </div>
+        <h2>Gallery</h2>
+        <div class="food-grid">
+            {% for image in images %}
+            <div class="image">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                <p>{{ image.title }}</p>
+                <p>{{ image.description }}</p>
+            </div>
+            {% empty %}
+                <p>No food items available.</p>
+            {% endfor %}
+        </div>
+        
     </div>
-{% endblock %}
+
+    <!-- <h2>Gallery</h2>
+    <div class="gallery">
+        {% for image in images %}
+            <div class="image">
+                <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                <p>{{ image.title }}</p>
+                <p>{{ image.description }}</p>
+            </div>
+        {% empty %}
+            <p>No images available.</p>
+        {% endfor %}
+    </div> -->
+    
 
 </body>
 </html>
+{% endblock %}

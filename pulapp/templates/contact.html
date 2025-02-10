@@ -1,0 +1,489 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .contact-banner {
+            position: relative;
+            padding: 60px 20px;
+            background-color: #f5f5f5;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+        }
+
+        .banner-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .banner-image {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .banner-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .contact-card-container {
+            flex: 1;
+            position: relative;
+            min-width: 300px;
+        }
+
+        .background-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ffd700;
+            border-radius: 15px;
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+        }
+
+        .contact-card {
+            position: relative;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .contact-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .learn-more-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #1a1a2e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background-color: #2d2d44;
+        }
+
+        @media (max-width: 768px) {
+            .banner-content {
+                flex-direction: column;
+            }
+
+            .contact-card-container {
+                width: 100%;
+            }
+
+            .background-card {
+                top: 10px;
+                left: 10px;
+            }
+
+            .contact-card {
+                padding: 30px;
+            }
+
+            .contact-card h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* addresss section */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .office-section {
+            background-color: #1f1f2e;
+            padding: 80px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .section-description {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: #a8a8b3;
+            line-height: 1.6;
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .office-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .office-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .office-content {
+            padding: 25px;
+            color: #333;
+        }
+
+        .office-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: #1f1f2e;
+        }
+
+        .office-address {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .office-contact {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .office-contact a {
+            color: #666;
+            text-decoration: none;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .office-contact a:hover {
+            color: #333;
+        }
+
+        .image-credit {
+            margin-top: 30px;
+            color: #a8a8b3;
+            font-size: 0.9rem;
+        }
+
+        .image-credit a {
+            color: #a8a8b3;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .office-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* contact form */
+        .contact-section {
+      background: linear-gradient(rgba(20, 20, 40, 0.9), rgba(20, 20, 40, 0.9)), url('/api/placeholder/1200/800') center/cover;
+      color: white;
+      padding: 3rem;
+      font-family: Arial, sans-serif;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-info {
+      padding: 1rem;
+    }
+
+    .contact-form {
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: normal;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .info-item img {
+      width: 24px;
+      height: 24px;
+      margin-right: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #444;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: #ffc107;
+      border: none;
+      border-radius: 4px;
+      color: #000;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background: #ffca2c;
+    }
+
+    .business-hours {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+    </style>
+</head>
+<body>
+    <section class="contact-banner">
+        <div class="container">
+            <div class="banner-content">
+                <div class="banner-image">
+                    <img src="https://static.vecteezy.com/system/resources/previews/037/448/494/non_2x/industrial-plant-isolated-on-a-transparent-background-oil-and-gas-industry-refinery-factory-petrochemical-plant-area-free-png.png" alt="Two professionals working together">
+                </div>
+                <div class="contact-card-container">
+                    <div class="background-card"></div>
+                    <div class="contact-card">
+                        <h2>Contact Us</h2>
+                        <p>Ready to transform your business? Get in touch with our team of experts today.</p>
+                        <a href="#" class="learn-more-btn">LEARN MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="office-section">
+        <div class="container">
+            <h2 class="section-title">Office locations</h2>
+            <p class="section-description">
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                <br>
+                Excepteur sint occaecat cupidatat non proiden
+            </p>
+
+            <div class="office-grid">
+                <!-- Galway Office -->
+                <div class="office-card">
+                    <img src="/api/placeholder/400/320" alt="Galway Office Building" class="office-image">
+                    <div class="office-content">
+                        <h3 class="office-title">Galway Office (Head Office)</h3>
+                        <div class="office-address">
+                            <p>Wolfe Tone House</p>
+                            <p>Fr Griffin Road</p>
+                            <p>Galway, A51 PW72</p>
+                        </div>
+                        <div class="office-contact">
+                            <a href="tel:+1(234)567-8910">+1 (234) 567-8910</a>
+                            <a href="mailto:building@company.com">building@company.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cork Office -->
+                <div class="office-card">
+                    <img src="/api/placeholder/400/320" alt="Cork Office Building" class="office-image">
+                    <div class="office-content">
+                        <h3 class="office-title">Cork Office</h3>
+                        <div class="office-address">
+                            <p>36 Kiehn Route</p>
+                            <p>West Ned Tennessee</p>
+                            <p>Cork, L63 H6NP</p>
+                        </div>
+                        <div class="office-contact">
+                            <a href="tel:+1(234)567-8910">+1 (234) 567-8910</a>
+                            <a href="mailto:building@company.com">building@company.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dublin Office -->
+                <div class="office-card">
+                    <img src="/api/placeholder/400/320" alt="Dublin Office Building" class="office-image">
+                    <div class="office-content">
+                        <h3 class="office-title">Dublin Office</h3>
+                        <div class="office-address">
+                            <p>Thomas Burgh House</p>
+                            <p>Newmarket Square</p>
+                            <p>Dublin 56, J08 A08</p>
+                        </div>
+                        <div class="office-contact">
+                            <a href="tel:+1(234)567-8910">+1 (234) 567-8910</a>
+                            <a href="mailto:building@company.com">building@company.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="image-credit">Images from <a href="#">Freepik</a></p>
+        </div>
+    </section>
+
+
+    <section class="contact-section">
+        <div class="contact-container">
+          <div class="contact-info">
+            <h1>Contact Us</h1>
+            <p style="color: #999; margin-bottom: 2rem;">Images from Freepik</p>
+            
+            <div class="info-item">
+              <img src="/api/placeholder/24/24" alt="Phone icon" />
+              <div>
+                <strong>Call Us</strong><br>
+                1 (234) 567-891, 1 (234) 987-654
+              </div>
+            </div>
+    
+            <div class="info-item">
+              <img src="/api/placeholder/24/24" alt="Location icon" />
+              <div>
+                <strong>Location</strong><br>
+                121 Rock Sreet, 21 Avenue, New York, NY 92103-9000
+              </div>
+            </div>
+    
+            <div class="info-item">
+              <img src="/api/placeholder/24/24" alt="Clock icon" />
+              <div>
+                <strong>Business Hours</strong><br>
+                <span class="business-hours">Mon - Fri ..... 10 am - 8 pm<br>
+                Sat, Sun ..... Closed</span>
+              </div>
+            </div>
+          </div>
+    
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter a valid email address" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your Name" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter your address" required>
+              </div>
+    
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Enter your message" required></textarea>
+              </div>
+    
+              <button type="submit">SUBMIT</button>
+            </form>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
+{% endblock %}

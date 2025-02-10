@@ -7,50 +7,174 @@
   <title>{% block title %}My Website{% endblock %}</title>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+<style>
+   * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .footer {
+            background-color: #0f172a;
+            padding: 2rem 4rem;
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .footer {
+                padding: 2rem;
+            }
+        }
+        /* nave bar */
+        .navbar {
+      position: fixed;
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      /* backdrop-filter: blur(10px); */
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      width: 20px;
+      height: 20px;
+      /* background: #ff9f43; */
+      border-radius: 30%;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+</style>
+
 </head>
 <body class="bg-gray-100">
   <!-- Navbar -->
-  <nav class="bg-white shadow-md">
-    <div class="container mx-auto flex justify-between items-center p-4">
-      <!-- Logo -->
-      <div class="flex items-center space-x-2">
-        <img src="{% static 'images\power-01.png' %}" alt="Logo" class="w-12 h-12 rounded-full" style="height: 0px; width: 100px;">
+  <nav class="navbar">
+    <div class="flex items-center space-x-2">
+        <img src="{% static 'images\logo.png' %}" alt="Logo" class="w-12 h-12 rounded-full" style="height: 150px; width: 150px;">
       </div>
-      
-      <!-- Nav Links -->
-      <div class="hidden md:flex space-x-8">
-        <a href="{% url 'index' %}" class="text-gray-600 hover:text-blue-500">Home</a>
-        <a href="{% url 'about' %}" class="text-gray-600 hover:text-blue-500">About</a>
-        <a href="{% url 'gallery' %}" class="text-gray-600 hover:text-blue-500">Gallery</a>
-        <a href="{% url 'contact' %}" class="text-gray-600 hover:text-blue-500">Contact</a>
+    </a>
+    <div class="nav-links">
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'gallery' %}">gallery</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <div class="text-gray-600 mt-2" style="color: rgb(255, 255, 255);">
       </div>
-      
-      <!-- Contact Details & Login Button -->
-      <div class="hidden md:flex items-center space-x-6">
-        <div class="text-gray-600">
-          <p class="text-sm"><i class="fas fa-phone-alt"></i> 8129139506</p>
-          <p class="text-sm"><i class="fas fa-envelope"></i> muhdashiquem@gmail.com</p>
-        </div>
-        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</a>
-      </div>
-
-      <!-- Mobile Menu Icon -->
-      <button id="mobile-menu-button" class="block md:hidden text-gray-600 focus:outline-none">
-        <i class="fas fa-bars text-2xl"></i>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-100 p-4 space-y-2">
-      <a href="{% url 'index' %}" class="block text-gray-600 hover:text-blue-500">Home</a>
-      <a href="{% url 'about' %}" class="block text-gray-600 hover:text-blue-500">About</a>
-      <a href="{% url 'gallery' %}" class="block text-gray-600 hover:text-blue-500">Gallery</a>
-      <a href="{% url 'contact' %}" class="block text-gray-600 hover:text-blue-500">Contact</a>
-      <div class="text-gray-600 mt-2">
-        <p class="text-sm"><i class="fas fa-phone-alt"></i> 8129139506</p>
-        <p class="text-sm"><i class="fas fa-envelope"></i> muhdashiquem@gmail.com</p>
-      </div>
-      <a href="#" class="block bg-blue-500 text-white text-center py-2 rounded hover:bg-blue-600">Login</a>
+      <a href="{% url 'login' %}">login</a>
     </div>
   </nav>
 
@@ -59,6 +183,56 @@
     {% block content %}
     {% endblock %}
   </div>
+
+
+  <footer class="footer">
+    <div class="footer-container">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+              <img src="{% static 'images\logo.png' %}" alt="Logo" class="w-12 h-12 rounded-full" style="height: 150px; width: 150px;">
+
+                <!-- ClarityUI -->
+            </a>
+            
+            <div class="nav-links">
+                <a href="#">Product</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">Resources</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                        <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+        
+        <div class="copyright">
+            © Copyright 2022, All Rights Reserved by ClarityUI
+        </div>
+    </div>
+</footer>
+
 
   <script>
     const mobileMenuButton = document.getElementById('mobile-menu-button');

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Image</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="file"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Button Styles */
+.save-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 14px;
+    border: 1px solid #dc3545;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Image</h2>
+        <form method="POST" enctype="multipart/form-data" id="editForm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+        <a href="{% url 'add_image' %}" class="cancel-btn">Cancel</a>
+    </div>
+
+    <script src="script.js">// Example JavaScript for interactivity
+        document.addEventListener('DOMContentLoaded', function () {
+            const editForm = document.getElementById('editForm');
+            const cancelBtn = document.querySelector('.cancel-btn');
+        
+            // Add a confirmation dialog before leaving the page without saving
+            cancelBtn.addEventListener('click', function (event) {
+                const confirmCancel = confirm('Are you sure you want to cancel? Any unsaved changes will be lost.');
+                if (!confirmCancel) {
+                    event.preventDefault();
+                }
+            });
+        
+            // Add a loading spinner when the form is submitted
+            editForm.addEventListener('submit', function () {
+                const saveBtn = document.querySelector('.save-btn');
+                saveBtn.innerHTML = 'Saving...';
+                saveBtn.disabled = true;
+            });
+        });</script>
+</body>
+</html>

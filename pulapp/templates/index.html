@@ -1,4 +1,8 @@
+{% extends 'base.html' %}
 {% load static %}
+
+{% block content %}
+
 
 <!DOCTYPE html>
 <html>
@@ -374,32 +378,268 @@
       top: -20px;
     }
   }
+
+  /* project section */
+  .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .sample-text {
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .background-accent {
+            position: absolute;
+            background-color: #c2b280;
+            width: 90%;
+            height: 80%;
+            top: 10%;
+            left: 5%;
+            z-index: -1;
+        }
+
+        .project-item {
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-credit {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid #c2b280;
+            color: #333;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #c2b280;
+            color: white;
+        }
+
+        /* footer */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .footer {
+            background-color: #0f172a;
+            padding: 2rem 4rem;
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .footer {
+                padding: 2rem;
+            }
+        }
+        /* gallery section */
+          /* General Styling */
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .image {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .image p {
+            margin-top: 10px;
+            color: #555;
+            font-size: 16px;
+        }
+
+        /* Empty State */
+        .gallery p {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+            grid-column: span 3;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .image p {
+                font-size: 14px;
+            }
+        }
+
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="flex items-center space-x-2">
-        <img src="{% static 'images\logo.png' %}" alt="Logo" class="w-12 h-12 rounded-full" style="height: 150px; width: 150px;">
-      </div>
-      <!-- <div class="logo-text">ROYALLINKS</div> -->
-    </a>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="{% url 'about' %}">About</a>
-      <a href="#">gallery</a>
-      <a href="#">Contact</a>
-      <div class="text-gray-600 mt-2" style="color: rgb(255, 255, 255);">
-        <p class="text-sm"><i class="fas fa-phone-alt"></i> 8129139506</p>
-        <p class="text-sm"><i class="fas fa-envelope"></i> muhdashiquem@gmail.com</p>
-      </div>
-      <a href="{% url 'login' %}">login</a>
-
-    </div>
-  </nav>
+  
 
   <div class="slider-container">
     <div class="slide" style="transform: translateX(0%)">
-      <img src="https://t4.ftcdn.net/jpg/02/28/08/93/360_F_228089326_QInWWQoCLv83KPEvxHYbXWTg5NMwH6wX.jpg" alt="Luxury home 1">
+      <img src="https://static.vecteezy.com/system/resources/previews/040/452/717/non_2x/ai-generated-abstract-lubricant-oil-isolated-on-transparent-background-free-png.png" alt="Luxury home 1">
       <div class="slide-overlay"></div>
     </div>
     <div class="slide" style="transform: translateX(100%)">
@@ -420,49 +660,11 @@
       <div class="slider-dot" onclick="goToSlide(2)"></div>
     </div>
   </div>
-
-  
-    <!-- <h2 class="mb-4">Fuel Rates</h2>
-    
-    <div class="row">
-        {% for rate in fuel_rates %}
-        <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">{{ rate.country }}</h5>
-                    <p class="card-text">Fuel Rate: {{ rate.fuel_rate }} per liter</p>
-                </div>
-            </div>
-        </div>
-        {% empty %}
-        <div class="col-12">
-            <p class="text-center">No fuel rates available.</p>
-        </div>
-        {% endfor %}
-    </div> -->
 </div>
   
 
 
-<section class="hero-section">
-    <h1 class="hero-title">Fuel Rates</h1>
 
-    <div class="services-grid">
-        {% for rate in fuel_rates %}
-        <div class="service-card">
-            <h5 class="card-title">{{ rate.country }}</h5>
-            <p class="card-text">Fuel Rate: {{ rate.fuel_rate }} per liter</p>
-        </div>
-        {% empty %}
-        <div class="col-12">
-            <p class="text-center">No fuel rates available.</p>
-        </div>
-        {% endfor %}
-    </div>
-
-    <button class="consult-button">GET FREE CONSULT</button>
-   
-</section>
 
 
 <section class="clean-energy-section">
@@ -478,9 +680,68 @@
 </section>
 
 
+<section class="hero-section">
+  <h1 class="hero-title">Fuel Rates</h1>
+
+  <div class="services-grid">
+      {% for rate in fuel_rates %}
+      <div class="service-card">
+          <h5 class="card-title">{{ rate.country }}</h5>
+          <p class="card-text">Fuel Rate: {{ rate.fuel_rate }} per liter</p>
+      </div>
+      {% empty %}
+      <div class="col-12">
+          <p class="text-center">No fuel rates available.</p>
+      </div>
+      {% endfor %}
+  </div>
+
+  <button class="consult-button">GET FREE CONSULT</button>
+ 
+</section>
 
 
 
+
+
+
+<section>
+  <div class="container">
+    <h1>Our Projects</h1>
+    <p class="sample-text">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+    
+    <div class="project-grid">
+      {% for image in gallery_images %}
+      <div class="image">
+        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+        <!-- <p>{{ image.title }}</p> -->
+      </div>
+        {% empty %}
+            <p>No projects available.</p>
+        {% endfor %}
+    </div>
+
+    <a href="#" class="contact-button">CONTACT US</a>
+  </div>
+</section>
+
+<!-- 
+
+<h2>Latest Images</h2>
+<div class="gallery">
+    {% for image in gallery_images %}
+        <div class="image">
+            <img src="{{ image.image.url }}" alt="{{ image.title }}">
+            <p>{{ image.title }}</p>
+        </div>
+    {% empty %}
+        <p>No images available.</p>
+    {% endfor %}
+</div> -->
+
+
+
+<!-- footer -->
 
 
   <script>
@@ -513,3 +774,4 @@
   </script>
 </body>
 </html>
+{% endblock %}
