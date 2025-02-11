@@ -94,9 +94,31 @@ form textarea {
     background-color: #dc3545;
     color: white;
 }
+
+/* back button */
+.back-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #218838;
+}
+
     </style>
 </head>
 <body>
+
+    <div style="margin-bottom: 600px;">
+        <button onclick="history.back()" class="back-button">Go Back</button>
+
+    </div>
     <div class="container">
         <h2>Edit Image</h2>
         <form method="POST" enctype="multipart/form-data" id="editForm">

@@ -104,19 +104,16 @@ def user_logout(request):
 
 
 def add_image(request):
-    images = GalleryImage.objects.all().order_by('-uploaded_at')
     if request.method == 'POST':
         form = GalleryImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('add_image') 
-        form = GalleryImageForm()
+            return redirect('add_image')  # Redirect after successful submission
+    else:
+        form = GalleryImageForm()  # Ensure form is defined for GET request
+    
+    images = GalleryImage.objects.all()  # Fetch images to display
     return render(request, 'add_image.html', {'form': form, 'images': images})
-
-
-
-
-
 
 
 

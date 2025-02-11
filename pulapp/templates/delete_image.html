@@ -75,11 +75,30 @@
                 width: 90%;
             }
         }
+        /* back button */
+        .back-button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #218838;
+}
+
 
     </style>
 </head>
 <body>
+<div style="margin-top: 40px; margin-right: 500px;" >
+    <button onclick="history.back()" class="back-button">Go Back</button>
 
+</div>
     <div class="delete-confirmation">
         <h2>Are you sure you want to delete this image?</h2>
         <p><strong>{{ image.title }}</strong></p>
