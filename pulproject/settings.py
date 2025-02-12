@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pulapp.middleware.PreventBackMiddleware',
 ]
 
 ROOT_URLCONF = 'pulproject.urls'
@@ -136,3 +137,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# settings.py
+LOGIN_REDIRECT_URL = '/'  # or wherever you want users to go after logging in
+LOGOUT_REDIRECT_URL = 'login'  # or any other page after logging out

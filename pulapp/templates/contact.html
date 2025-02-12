@@ -24,6 +24,7 @@
             min-height: 400px;
             display: flex;
             align-items: center;
+            margin-top: 0px;
         }
 
         .container {
@@ -136,7 +137,7 @@
         }
 
         .office-section {
-            background-color: #1f1f2e;
+            background-color: #F3F4F6;
             padding: 80px 20px;
             color: white;
             text-align: center;
@@ -243,7 +244,7 @@
 
         /* contact form */
         .contact-section {
-      background: linear-gradient(rgba(20, 20, 40, 0.9), rgba(20, 20, 40, 0.9)), url('/api/placeholder/1200/800') center/cover;
+      background: linear-gradient(rgba(140, 140, 143, 0.9), rgba(122, 122, 123, 0.9)), url('https://images.rawpixel.com/image_400/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2ZyaW5kdXN0cnlfaW5kdXN0cmlhbF9mYWJyaWNfY2hpbW5leXMtaW1hZ2Utam9iODUzXzEuanBn.jpg') center/cover;
       color: white;
       padding: 3rem;
       font-family: Arial, sans-serif;
@@ -308,7 +309,7 @@
       resize: vertical;
     }
 
-    button {
+    /* button1 {
       width: 100%;
       padding: 1rem;
       background: #ffc107;
@@ -321,9 +322,9 @@
       transition: background-color 0.3s;
     }
 
-    button:hover {
+    button1:hover {
       background: #ffca2c;
-    }
+    } */
 
     .business-hours {
       color: #ccc;
@@ -360,7 +361,7 @@
 
     <section class="office-section">
         <div class="container">
-            <h2 class="section-title">Office locations</h2>
+            <h2 class="section-title" style="color: black;">Office locations</h2>
             <p class="section-description">
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 <br>
@@ -370,7 +371,7 @@
             <div class="office-grid">
                 <!-- Galway Office -->
                 <div class="office-card">
-                    <img src="/api/placeholder/400/320" alt="Galway Office Building" class="office-image">
+                    <img src="https://media.istockphoto.com/id/582256640/photo/oil-refinery-chemical-petrochemical-plant.jpg?s=612x612&w=0&k=20&c=BEdsHVe2vUfzRTb9KcsCS_tCH6_R_nKLKkOQCht8AKo=" alt="Galway Office Building" class="office-image">
                     <div class="office-content">
                         <h3 class="office-title">Galway Office (Head Office)</h3>
                         <div class="office-address">
@@ -387,7 +388,7 @@
 
                 <!-- Cork Office -->
                 <div class="office-card">
-                    <img src="/api/placeholder/400/320" alt="Cork Office Building" class="office-image">
+                    <img src="https://media.istockphoto.com/id/518368534/photo/petrochemical-plant-illuminated-at-dusk.jpg?s=612x612&w=0&k=20&c=aOF0IURiiS60pabQNt6dcHnJ02vUcWvE4DwIIm-92Xw=" alt="Cork Office Building" class="office-image">
                     <div class="office-content">
                         <h3 class="office-title">Cork Office</h3>
                         <div class="office-address">
@@ -404,7 +405,7 @@
 
                 <!-- Dublin Office -->
                 <div class="office-card">
-                    <img src="/api/placeholder/400/320" alt="Dublin Office Building" class="office-image">
+                    <img src="https://media.istockphoto.com/id/509848898/photo/oil-refinery-at-twilight.jpg?s=612x612&w=0&k=20&c=YeMOGbdn-iNLWQetb7moMpQaG6-Rvd6Iqq_-h2puP8Y=" alt="Dublin Office Building" class="office-image">
                     <div class="office-content">
                         <h3 class="office-title">Dublin Office</h3>
                         <div class="office-address">
@@ -419,8 +420,6 @@
                     </div>
                 </div>
             </div>
-
-            <p class="image-credit">Images from <a href="#">Freepik</a></p>
         </div>
     </section>
 
@@ -428,9 +427,7 @@
     <section class="contact-section">
         <div class="contact-container">
           <div class="contact-info">
-            <h1>Contact Us</h1>
-            <p style="color: #999; margin-bottom: 2rem;">Images from Freepik</p>
-            
+            <h1>Contact Us</h1>            
             <div class="info-item" style="color: white;">
               <img src="https://static-00.iconduck.com/assets.00/call-icon-2047x2048-1v137evf.png" alt="Phone icon" />
               <div>
@@ -479,7 +476,9 @@
                 <textarea id="message" placeholder="Enter your message" required></textarea>
               </div>
     
-              <button type="submit">SUBMIT</button>
+              <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300" style="width: 800px;">
+                Submit
+              </button>
             </form>
           </div>
         </div>

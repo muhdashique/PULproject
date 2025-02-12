@@ -4,19 +4,22 @@
   {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}My Website{% endblock %}</title>
+  <title>{% block title %}P U L{% endblock %}</title>
+    <link rel="icon" href="{% static 'D:\IMC project\pulproject\pulproject\static\images\logo.png' %}" type="image/x-icon" style="height: 90px;width: 90px;">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 <style>
   /* Navbar */
   .navbar {
     position: fixed;
     width: 100%;
+    height: 15vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background: #00000033;
+    background: #ffffff;
   }
 
   .logo {
@@ -53,7 +56,7 @@
   }
 
   .nav-links a {
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-decoration: none;
     font-size: 16px;
     text-transform: uppercase;
@@ -61,32 +64,229 @@
   }
   .nav-links a.active {
     font-weight: bold;
-    color: #007bff; /* Change this to the color you want for the active link */
-    border-bottom: 2px solid #007bff;
+    color: #32A754; /* Change this to the color you want for the active link */
+    border-bottom: 2px solid #32A754;
   }
+  .navbar {
+      position: fixed;
+      width: 100%;
+      height: 15vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: #ffffff;
+      transition: top 0.3s ease; /* Smooth transition for showing/hiding */
+    }
+    .hidden-navbar {
+      top: -100px; /* Hide the navbar when scrolled down */
+    }
+
+    /* footer section  */
+    .footer {
+    background-color: #1f2937;
+    color: #9ca3af;
+    padding: 40px 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cta-section {
+    background-color: #32A754;
+    color: white;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cta-text h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.cta-text p {
+    margin: 5px 0 0;
+}
+
+.contactus-button1 {
+    background-color: #1f2937;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+
+.footer-column h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    background-color: #32A754;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #32A754;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    color: #9ca3af;
+    font-size: 14px;
+}
 </style>
 </head>
 <body class="bg-gray-100" >
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="flex items-center space-x-2">
-        <img src="{% static 'images/power-01.png' %}" alt="Logo" class="logo">
+  <header id="navbar">
+    <nav class="navbar">
+      <div class="flex items-center space-x-2">
+        <img src="{% static 'images/power-01.png' %}" alt="Logo" class="logo" style="height: 100px; width: 100px;">
       </div>
-    </a>
-    <div class="nav-links" style="margin-right: 40px;">
+      <div class="nav-links" style="margin-right: 40px;">
         <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
         <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
         <a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
         <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
-        <a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}" style="font-weight: 900; color: red;">Login</a>
+        <a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}" style="font-weight: 900; color: #32A754;">Login</a>
       </div>
-      
-  </nav>
+    </nav>
+  </header>
 
   <!-- Page Content -->
   <div class="container mx-auto mt-6">
     {% block content %}
     {% endblock %}
   </div>
+
+
+  <!-- footer section -->
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="cta-section">
+            <div class="cta-text">
+                <h2>Ready for a next project?</h2>
+                <p>Let's get started!</p>
+            </div>
+            <button class="contactus-button1">Contact us</button>
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="logo"><img src="{% static 'images/power-01.png' %}" alt="Logo" class="logo" style="height: 100px; width: 100px;"></div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Customers</h3>
+                <ul>
+                    <li><a href="#">Buyer</a></li>
+                    <li><a href="#">Supplier</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Further Information</h3>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Follow us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-medium-m"></i></a>
+                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <script>
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > lastScrollY) {
+        // Scroll down - hide navbar
+        navbar.classList.add('hidden-navbar');
+      } else {
+        // Scroll up - show navbar
+        navbar.classList.remove('hidden-navbar');
+      }
+      lastScrollY = window.scrollY;
+    });
+  </script>
+
 </body>
 </html>

@@ -38,20 +38,7 @@
             flex: 1;
         }
 
-        .discount-badge {
-            background-color: #4CAF50;
-            color: white;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-        }
-
+       
         .hero-title {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
@@ -61,7 +48,7 @@
         .hero-button {
             display: inline-block;
             padding: 1rem 2rem;
-            background-color: #FFD700;
+            background-color: #32A754;
             color: black;
             text-decoration: none;
             border-radius: 25px;
@@ -105,7 +92,7 @@
         }
 
         .featured-dish {
-            background-color: #0586E0;
+            background-color: #32A754;
             padding: 2rem;
             border-radius: 15px;
             margin-bottom: 2rem;
@@ -244,13 +231,15 @@
                 font-size: 14px;
             }
         }
+       
     </style>
 </head>
 <body>
+    
+
     <div class="container">
         <section class="hero">
             <div class="hero-content">
-                <div class="discount-badge">40%</div>
                 <h1 class="hero-title">Where every ingredient tells a story</h1>
                 <a href="#" class="hero-button">Order Now</a>
             </div>
@@ -300,19 +289,7 @@
         
     </div>
 
-    <!-- <h2>Gallery</h2>
-    <div class="gallery">
-        {% for image in images %}
-            <div class="image">
-                <img src="{{ image.image.url }}" alt="{{ image.title }}">
-                <p>{{ image.title }}</p>
-                <p>{{ image.description }}</p>
-            </div>
-        {% empty %}
-            <p>No images available.</p>
-        {% endfor %}
-    </div> -->
-    
+  
 
 </body>
 </html>

@@ -3,9 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import FuelRate, GalleryImage
 from .forms import FuelRateForm, GalleryImageForm
-
-
-
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -35,9 +33,14 @@ def gallery(request):
 def contact(request):
     return render(request,'contact.html')
 
+# Example: Add this decorator to views that require authentication
 
+from django.contrib.auth.decorators import login_required
 
+# Example of a protected view (requires login)
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def adminpannel(request):
     fuel_rates = FuelRate.objects.all()
     
@@ -54,6 +57,8 @@ def adminpannel(request):
         'form': form,
     }
     return render(request, 'adminpannel.html', context)
+
+
 
 
 
@@ -96,11 +101,23 @@ def delete_fuel_rate(request, pk):
     return render(request, 'confirm_delete.html', {'fuel_rate': fuel_rate})
 
 
-
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+from django.http import HttpResponse
 
 def user_logout(request):
     logout(request)
-    return redirect('index')  
+    # Clear the session
+    request.session.flush()
+
+    # Set cache control headers to prevent caching
+    response = redirect('index')
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+
+    return response
+    
 
 
 def add_image(request):
