@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +17,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: "Barlow", serif;
             background-color: #1a1a1a;
             color: rgb(0, 0, 0);
         }
@@ -158,7 +161,7 @@
         /* gallery */
          /* General Styling */
          body {
-            font-family: Arial, sans-serif;
+            font-family: "Barlow", serif;
             background-color: #f8f8f8;
             margin: 0;
             padding: 0;
@@ -223,14 +226,53 @@
 
         /* Responsive Design for Mobile */
         @media (max-width: 600px) {
-            .food-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+    /* Add space between the first food-grid and gallery section */
+    #gallery {
+        margin-top: 40px;  /* Adds space above the gallery section */
+    }
 
-            .image p {
-                font-size: 14px;
-            }
-        }
+    /* For the first set of images */
+    .food-grid .food-item {
+        margin-bottom: 20px;  /* Space between the first set of images */
+    }
+
+    /* For both grids */
+    .food-grid {
+        display: block;
+    }
+}
+        /* image preview */
+        .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 600px; /* Specific size for the image */
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
        
     </style>
 </head>
@@ -240,8 +282,8 @@
     <div class="container">
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-title">Where every ingredient tells a story</h1>
-                <a href="#" class="hero-button">Order Now</a>
+                <h1 class="hero-title">Explore Our Gallery: A Visual Journey of Excellence</h1>
+                <!-- <a href="#" class="hero-button">Order Now</a> -->
             </div>
             <div class="hero-image">
                 <img src="https://swarajya.gumlet.io/swarajya/2023-09/acccf079-945a-432b-9a69-add677495c81/Par_1_d126a035a7cc78dc71be6d088d.jpg?w=1200&h=675&auto=format%2Ccompress&fit=max&enlarge=true" alt="Delicious main dish">
@@ -250,10 +292,10 @@
 
         <div class="food-grid">
             <div class="food-item">
-                <img src="https://www.houstoninjurylawyer.com/wp-content/uploads/2024/08/Two-Workers-at-an-Oil-Refinery.-Oil-Refineries-in-the-U.S.png" alt="Food 1">
+                <img src="https://media.istockphoto.com/id/1406716247/photo/twilight-scene-of-tank-oil-refinery-plant-and-tower-column-of-petrochemistry.jpg?s=612x612&w=0&k=20&c=RVLF9FnUaJ1Wt7lIfFB8K4ou00Zzb0TAgCHMEFsztQE=" alt="Food 1">
             </div>
             <div class="food-item">
-                <img src="https://www.houstoninjurylawyer.com/wp-content/uploads/2024/08/Two-Workers-at-an-Oil-Refinery.-Oil-Refineries-in-the-U.S.png" alt="Food 2">
+                <img src="https://media.istockphoto.com/id/485535398/photo/factories.jpg?s=612x612&w=0&k=20&c=Zyo_CWqOqTlFsPeSaHAZj3kJeGbA2Qa3VnsmyBtowVI=" alt="Food 2">
             </div>
             <div class="food-item">
                 <img src="https://www.houstoninjurylawyer.com/wp-content/uploads/2024/08/Two-Workers-at-an-Oil-Refinery.-Oil-Refineries-in-the-U.S.png" alt="Food 3">
@@ -263,33 +305,57 @@
         <div class="featured-dish">
             <div class="featured-dish-content">
                 <div class="featured-dish-info">
-                    <div class="price">$27</div>
-                    <h2 class="food-title">Premium Steak</h2>
+                    <div class="price">Gallery: Explore Our Collection</div>
+                    <h2 class="food-title">Our Project: Fueling the Future</h2>
                     <p class="food-description">
-                        Perfectly grilled to your preference, our premium cut steak is served with seasonal vegetables and house-made sauce. A true culinary masterpiece that combines traditional techniques with modern presentation.
+                        Our project focuses on providing high-quality fuel solutions, ensuring efficiency, reliability, and sustainability to meet the growing energy demands of the future.
                     </p>
                 </div>
                 <div class="featured-dish-image">
                     <img src="https://www.petrosync.com/blog/wp-content/uploads/2024/01/oil-refinery-in-oil-and-gas-industry.png" alt="Featured steak dish">
                 </div>
             </div>
-        </div>
-        <h2>Gallery</h2>
-        <div class="food-grid">
-            {% for image in images %}
-            <div class="image">
-                <img src="{{ image.image.url }}" alt="{{ image.title }}">
-                <p>{{ image.title }}</p>
-                <p>{{ image.description }}</p>
-            </div>
-            {% empty %}
-                <p>No food items available.</p>
-            {% endfor %}
-        </div>
-        
+        </div>  
     </div>
 
-  
+    <section id="gallery">
+        <div class="price" style="color: black;">A Glimpse into Our Innovative Fuel Solutions</div>
+        <div class="food-grid">
+          {% for image in images %}
+          <div class="image">
+           <div class="hyy"><img src="{{ image.image.url }}" alt="{{ image.title }}" onclick="openModal('{{ image.image.url }}')"></div> 
+            <p>{{ image.title }}</p>
+            <p>{{ image.description }}</p>
+          </div>
+          {% empty %}
+            <p>No food items available.</p>
+          {% endfor %}
+        </div>
+      </section>
+      
+      <!-- Modal for image preview -->
+      <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+      </div>
+      
+
+
+
+      <script>
+        function openModal(imageUrl) {
+  var modal = document.getElementById("imageModal");
+  var modalImg = document.getElementById("modalImage");
+  modal.style.display = "flex";  // Use flex for centering
+  modalImg.src = imageUrl;
+}
+
+function closeModal() {
+  var modal = document.getElementById("imageModal");
+  modal.style.display = "none";
+}
+
+      </script>
 
 </body>
 </html>

@@ -5,288 +5,431 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}P U L{% endblock %}</title>
-    <link rel="icon" href="{% static 'D:\IMC project\pulproject\pulproject\static\images\logo.png' %}" type="image/x-icon" style="height: 90px;width: 90px;">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
-<style>
-  /* Navbar */
-  .navbar {
-    position: fixed;
-    width: 100%;
-    height: 15vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    background: #ffffff;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    color: #000000;
-    text-decoration: none;
-  }
-
-  .navbar img {
-    margin-left: 30%;
-    object-fit: contain;
-    height: 70px; /* Adjust this height value */
-    width: auto;  /* Automatically adjusts the width while maintaining aspect ratio */
-  }
-
-  .logo-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 30px;
-  }
-
-  .nav-links a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .nav-links a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .nav-links a.active {
-    font-weight: bold;
-    color: #32A754; /* Change this to the color you want for the active link */
-    border-bottom: 2px solid #32A754;
-  }
-  .navbar {
+  <style>
+    /* Navbar Styles */
+    .navbar {
       position: fixed;
       width: 100%;
-      height: 15vh;
+      height: auto;
+      min-height: 80px;
+      background: #ffffff;
+      z-index: 1000;
+      transition: top 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 70px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #000000;
+      text-decoration: none;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+      padding-bottom: 5px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #32A754;
+    }
+
+    .nav-links a.active {
+      font-weight: bold;
+      color: #32A754;
+      border-bottom: 2px solid #32A754;
+    }
+
+    .login-link {
+      font-weight: 900 !important;
+      color: #32A754 !important;
+    }
+
+    /* Floating Icons Styles */
+    .floating-icon {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30%;
+      color: #ffffff;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
       z-index: 1000;
+    }
+
+    .floating-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-icon {
+      left: 40px;
+      background-color: #25D366;
+    }
+
+    .call-icon {
+      right: 40px;
+      background-color: #32A754;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu-button {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-menu {
+      display: none;
+      width: 100%;
       background: #ffffff;
-      transition: top 0.3s ease; /* Smooth transition for showing/hiding */
-    }
-    .hidden-navbar {
-      top: -100px; /* Hide the navbar when scrolled down */
+      padding: 1rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
-    /* footer section  */
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: #000000;
+      text-decoration: none;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* Footer Styles */
     .footer {
-    background-color: #1f2937;
-    color: #9ca3af;
-    padding: 40px 0;
-    font-family: Arial, sans-serif;
-}
+      background-color: #1f2937;
+      color: #9ca3af;
+      padding: 40px 0;
+      margin-top: 40px;
+    }
 
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-.cta-section {
-    background-color: #32A754;
-    color: white;
-    padding: 30px;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .cta-section {
+      background-color: #32A754;
+      color: white;
+      padding: 30px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.cta-text h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 500;
-}
+    .cta-text h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 500;
+    }
 
-.cta-text p {
-    margin: 5px 0 0;
-}
+    .cta-text p {
+      margin: 5px 0 0;
+    }
 
-.contactus-button1 {
-    background-color: #1f2937;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
+    .contactus-button {
+      background-color: #1f2937;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
 
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
-}
+    .contactus-button:hover {
+      background-color: #374151;
+    }
 
-.footer-column h3 {
-    color: white;
-    margin-bottom: 20px;
-    font-size: 18px;
-}
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+    }
 
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 500;
+    }
 
-.footer-column ul li {
-    margin-bottom: 10px;
-}
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-.footer-column ul li a {
-    color: #9ca3af;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
 
-.footer-column ul li a:hover {
-    color: white;
-}
+    .footer-column ul li a {
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-.social-links {
-    display: flex;
-    gap: 15px;
-}
+    .footer-column ul li a:hover {
+      color: white;
+    }
 
-.social-links a {
-    background-color: #32A754;
-    color: white;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
 
-.social-links a:hover {
-    background-color: #32A754;
-}
+    .social-links a {
+      background-color: #32A754;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
 
-.logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+    .social-links a:hover {
+      background-color: #2c9449;
+    }
 
-.copyright {
-    color: #9ca3af;
-    font-size: 14px;
-}
-</style>
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: block;
+      }
+
+      .mobile-menu.show {
+        display: block;
+      }
+
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .footer-column {
+        text-align: center;
+      }
+
+      .floating-icon {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        font-size: 20px;
+      }
+
+      .whatsapp-icon {
+        left: 20px;
+      }
+
+      .call-icon {
+        right: 20px;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-100" >
+<body class="bg-gray-100">
+  <!-- Floating Icons -->
+  <a href="https://wa.me/your-whatsapp-number" class="floating-icon whatsapp-icon" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="tel:your-phone-number" class="floating-icon call-icon">
+    <i class="fas fa-phone"></i>
+  </a>
+
   <!-- Navbar -->
-  <header id="navbar">
-    <nav class="navbar">
-      <div class="flex items-center space-x-2">
-        <img src="{% static 'images/power-01.png' %}" alt="Logo" class="logo" style="height: 100px; width: 100px;">
+  <header id="navbar" class="navbar">
+    <div class="navbar-container">
+      <div class="logo-container">
+        <img src="{% static 'images/power-01.png' %}" alt="Logo">
       </div>
-      <div class="nav-links" style="margin-right: 40px;">
+
+      <button class="mobile-menu-button" id="menu-button" aria-label="Toggle menu">
+        <svg class="w-8 h-8 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+
+      <nav class="nav-links">
         <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
         <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
         <a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
         <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
-        <a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}" style="font-weight: 900; color: #32A754;">Login</a>
-      </div>
-    </nav>
+        <a href="{% url 'login' %}" class="login-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a>
+      </nav>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a>
+      <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+      <a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a>
+      <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+      <a href="{% url 'login' %}" class="login-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a>
+    </div>
   </header>
 
-  <!-- Page Content -->
-  <div class="container mx-auto mt-6">
+  <!-- Main Content -->
+  <main class="container mx-auto mt-24 p-4">
     {% block content %}
     {% endblock %}
-  </div>
+  </main>
 
-
-  <!-- footer section -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-        <div class="cta-section">
-            <div class="cta-text">
-                <h2>Ready for a next project?</h2>
-                <p>Let's get started!</p>
-            </div>
-            <button class="contactus-button1">Contact us</button>
+      <div class="cta-section">
+        <div class="cta-text">
+          <h2>Ready for a next project?</h2>
+          <p>Let's get started!</p>
+        </div>
+        <button class="contactus-button">Contact us</button>
+      </div>
+      
+      <div class="footer-content">
+        <div class="footer-column" style="align-items: center; ">
+          <img src="{% static 'images/power-01.png' %}" alt="Logo" style="height: 100px; width: auto; align-self: center;">
         </div>
         
-        <div class="footer-content">
-            <div class="footer-column">
-                <div class="logo"><img src="{% static 'images/power-01.png' %}" alt="Logo" class="logo" style="height: 100px; width: 100px;"></div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Customers</h3>
-                <ul>
-                    <li><a href="#">Buyer</a></li>
-                    <li><a href="#">Supplier</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Contact us</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Further Information</h3>
-                <ul>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Follow us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-medium-m"></i></a>
-                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
-                </div>
-            </div>
+        <div class="footer-column">
+          <h3>Customers</h3>
+          <ul>
+            <li><a href="#">Buyer</a></li>
+            <li><a href="#">Supplier</a></li>
+          </ul>
         </div>
+        
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="{% url 'about' %}">About us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="{% url 'contact' %}">Contact us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Further Information</h3>
+          <ul>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Follow us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <!-- <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
+            <a href="#"><i class="fab fa-medium-m"></i></a>
+            <!-- <a href="#"><i class="fab fa-telegram-plane"></i></a> -->
+          </div>
+        </div>
+      </div>
     </div>
-</footer>
+  </footer>
 
   <script>
+    // Mobile Menu Toggle
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('show');
+    });
+
+    // Hide navbar on scroll down, show on scroll up
     let lastScrollY = window.scrollY;
     const navbar = document.getElementById('navbar');
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > lastScrollY) {
-        // Scroll down - hide navbar
-        navbar.classList.add('hidden-navbar');
+        navbar.style.top = '-100px';
       } else {
-        // Scroll up - show navbar
-        navbar.classList.remove('hidden-navbar');
+        navbar.style.top = '0';
       }
       lastScrollY = window.scrollY;
     });
-  </script>
 
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('#mobile-menu') && 
+          !event.target.closest('#menu-button') && 
+          mobileMenu.classList.contains('show')) {
+        mobileMenu.classList.remove('show');
+      }
+    });
+  </script>
 </body>
 </html>

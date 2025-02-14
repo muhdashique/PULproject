@@ -7,6 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <title>Solar Energy Solutions</title>
   <style>
        * {
@@ -28,6 +31,9 @@
   margin-right: -50vw;
   margin-top: -40px;
 }
+.body{
+    background-color: #909495;
+  }
 
 .slider-wrapper {
   width: 100%;
@@ -109,6 +115,7 @@
   font-weight: bold;
   margin-bottom: 2rem;
   max-width: 800px;
+  color: white;
 }
 
 .services-grid {
@@ -321,7 +328,7 @@
         }
 
         h1 {
-            font-family: Arial, sans-serif;
+            font-family: "Barlow", serif;
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: #333;
@@ -330,6 +337,7 @@
         .sample-text {
             color: #666;
             margin-bottom: 40px;
+            text-align: center;
         }
 
         .project-grid {
@@ -378,7 +386,7 @@
             border: 2px solid #32A754;
             color: #32A754;;
             text-decoration: none;
-            font-family: Arial, sans-serif;
+            font-family: "Barlow", serif;
             font-weight: bold;
             transition: all 0.3s ease;
         }
@@ -462,6 +470,120 @@
         }
        
 
+        /* banner text */
+        .slider-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.banner-text h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.banner-text p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+/* Mobile Menu Button */
+.mobile-menu-button {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #32A754;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .slider-container {
+                height: 50vh;
+            }
+
+            .hero-section {
+                height: auto;
+                padding: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .clean-energy-section {
+                flex-direction: column;
+                padding: 40px 20px;
+            }
+
+            .content-wrapper {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .background-square {
+                right: -20px;
+                top: -20px;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
 
   </style>
 </head>
@@ -473,6 +595,10 @@
   <!-- Slider Section -->
   <!-- Remove any wrapper divs and place this directly in the body -->
   <div class="slider-container">
+    <div class="banner-text">
+      <!-- <h1 style="color: white;">Welcome to Our Fuel Company</h1> -->
+      <!-- <p>Providing the best fuel solutions worldwide.</p> -->
+    </div>
     <div class="slider-wrapper">
       <div class="slide active">
         <img src="{% static 'images/oil1.jpg' %}" alt="Slide 1">
@@ -484,13 +610,14 @@
         <img src="{% static 'images/oil3.jpg' %}" alt="Slide 3">
       </div>
     </div>
-    
+  
     <div class="slider-buttons">
       <div class="slider-dot active" data-index="0"></div>
       <div class="slider-dot" data-index="1"></div>
       <div class="slider-dot" data-index="2"></div>
     </div>
   </div>
+  
 
 
 
@@ -498,9 +625,9 @@
 
 <section class="clean-energy-section">
   <div class="content-wrapper">
-    <h2 class="title">Clean Energy</h2>
+    <h2 class="title">Who We Are</h2>
     <p class="description">Power Used Lubricants has been a prominent player in the field of power-used lubricants in the UAE since 2009. We specialize in supplying high-quality lubricants to renowned establishments and prestigious projects. Over the years, we have established ourselves as one of the most reliable suppliers of power-used lubricants, offering products that meet the highest standards of performance and reliability.</p>
-    <a href="#" class="learn-more-btn">LEARN MORE</a>
+    <a href="{% url 'about' %}" class="learn-more-btn">LEARN MORE</a>
   </div>
   <div class="image-wrapper">
     <div class="background-square"></div>
@@ -510,7 +637,7 @@
 
 
 <section class="hero-section">
-  <h1 class="hero-title">Fuel Rates</h1>
+  <h1 class="hero-title" >Fuel Pricing</h1>
 
   <div class="services-grid">
       {% for rate in fuel_rates %}
@@ -525,7 +652,7 @@
       {% endfor %}
   </div>
 
-  <button class="consult-button">GET FREE CONSULT</button>
+  <!-- <button class="consult-button">GET FREE CONSULT</button> -->
  
 </section>
 
@@ -536,13 +663,13 @@
 
 <section>
   <div class="container">
-    <h1>Our Projects</h1>
-    <p class="sample-text">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+    <h1>Why We Exist</h1>
+    <p class="sample-text">Power Lubricant Project Delivering high-performance lubricant solutions designed to maximize engine <br> efficiency and durability. Join us in redefining lubrication technology.</p>
     
     <div class="project-grid">
       {% for image in gallery_images %}
       <div class="image">
-        <img src="{{ image.image.url }}" alt="{{ image.title }}" class="image">
+       <a href="{% url 'gallery' %}#gallery"> <img src="{{ image.image.url }}" alt="{{ image.title }}" class="image"></a>
 
         <!-- <p>{{ image.title }}</p> -->
       </div>
@@ -551,7 +678,7 @@
         {% endfor %}
     </div>
 
-    <a href="#" class="contact-button">CONTACT US</a>
+    <a href="{% url 'gallery' %}#gallery" class="contact-button">View More</a>
   </div>
 </section>
 
