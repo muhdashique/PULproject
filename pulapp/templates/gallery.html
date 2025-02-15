@@ -178,19 +178,20 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust number of columns based on screen width */
             gap: 20px;
-            padding: 20px;
+            padding: 10px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .image {
-            background-color: #fff;
+            /* background-color: #fff; */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
+            
         }
 
         .image:hover {
@@ -203,6 +204,7 @@
             height: auto;
             border-radius: 8px;
             transition: transform 0.3s ease;
+            align-items: center;
         }
 
         .image p {
@@ -274,6 +276,115 @@
 }
 
        
+
+
+/* Gallery section container */
+#gallery {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Title styling */
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Grid container */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Individual image container */
+.image {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.image:hover {
+    transform: translateY(-5px);
+}
+
+/* Image wrapper */
+.hyy {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+/* Image styling */
+.hyy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hyy img:hover {
+    transform: scale(1.05);
+}
+
+/* Text content styling */
+.image p {
+    padding: 1rem;
+    margin: 0;
+}
+
+.image p:first-of-type {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.image p:last-of-type {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Empty state message */
+.food-grid > p {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .food-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .price {
+        font-size: 1.5rem;
+    }
+    
+    .hyy {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    #gallery {
+        padding: 1rem;
+    }
+    
+    .food-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -328,10 +439,11 @@
             <p>{{ image.description }}</p>
           </div>
           {% empty %}
-            <p>No food items available.</p>
+            <p>No Image available.</p>
           {% endfor %}
         </div>
       </section>
+      
       
       <!-- Modal for image preview -->
       <div id="imageModal" class="modal" onclick="closeModal()">

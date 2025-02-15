@@ -4,7 +4,7 @@
   {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}P U L{% endblock %}</title>
+  <title>{% block title %}POWER USED LUBRICANTS{% endblock %}</title>
   <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -297,6 +297,14 @@
         right: 20px;
       }
     }
+
+    @media (max-width: 768px) {  /* For mobile screens */
+    .footer-column img {
+        display: block;
+        margin: 0 auto;  /* Centers the image */
+    }
+}
+
   </style>
 </head>
 <body class="bg-gray-100">
@@ -328,6 +336,10 @@
         <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
         <a href="{% url 'login' %}" class="login-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a>
       </nav>
+      <!-- <div>
+        <p>Email: <a href="mailto:contact@bookadvisor.com">contact@bookadvisor.com</a></p>
+        <p>Phone: <a href="tel:+918129139506">+91 8129139506</a></p>
+      </div> -->
     </div>
 
     <div class="mobile-menu" id="mobile-menu">
@@ -357,9 +369,10 @@
       </div>
       
       <div class="footer-content">
-        <div class="footer-column" style="align-items: center; ">
-          <img src="{% static 'images/power-01.png' %}" alt="Logo" style="height: 100px; width: auto; align-self: center;">
-        </div>
+        <div class="footer-column text-center d-flex justify-content-center">
+          <img src="{% static 'images/power-01.png' %}" alt="Logo" style="height: 100px; width: auto;">
+      </div>
+      
         
         <div class="footer-column">
           <h3>Customers</h3>
@@ -370,10 +383,10 @@
         </div>
         
         <div class="footer-column">
-          <h3>Company</h3>
+          <h3>POWER USED LUBRICANTS </h3>
           <ul>
             <li><a href="{% url 'about' %}">About us</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><a href="{% url 'gallery' %}">Gallery</a></li>
             <li><a href="{% url 'contact' %}">Contact us</a></li>
           </ul>
         </div>
@@ -381,8 +394,10 @@
         <div class="footer-column">
           <h3>Further Information</h3>
           <ul>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">
+              PB No : 22 Sharjah
+              </a></li>
+            <li><a href="#"> UAE</a></li>
           </ul>
         </div>
         

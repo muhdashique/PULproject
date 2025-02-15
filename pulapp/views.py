@@ -1,3 +1,4 @@
+from datetime import datetime 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -11,10 +12,12 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     fuel_rates = FuelRate.objects.all()
     gallery_images = GalleryImage.objects.all()[:6]
+    current_datetime = datetime.now() 
     
     context = {
         'fuel_rates': fuel_rates,
-        'gallery_images': gallery_images,  
+        'gallery_images': gallery_images,
+        'current_datetime': current_datetime  
     }
     
     return render(request, 'index.html', context)
