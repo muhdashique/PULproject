@@ -16,8 +16,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS = [
-    'http://powerusedlubricants.com',
-    
+    'https://powerusedlubricants.com',
 ]
 
 
@@ -32,7 +31,7 @@ SECRET_KEY = 'django-insecure-$pfvjxld@o_p+zd-2m6pa-ixk#v)^-g4)ovr&p*%g!+rp&zeb^
 DEBUG = True
 
 ALLOWED_HOSTS = ['powerusedlubricants.com','www.powerusedlubricants.com']
-
+# 'powerusedlubricants.com','www.powerusedlubricants.com'
 
 # Application definition
 
