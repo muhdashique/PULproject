@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['powerusedlubricants.com','www.powerusedlubricants.com']
 # 'powerusedlubricants.com','www.powerusedlubricants.com'
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-domain.com']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-domain.com']
 
 # Application definition
 
@@ -87,8 +87,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'puldatabase',  # Replace with your database name
         'USER': 'postgres',  # Replace with your database username
-        # 'PASSWORD': 'info@imc',  # Replace with your database password
-        'PASSWORD': '1234',  # Replace with your database password
+        'PASSWORD': 'info@imc',  # Replace with your database password
+        # 'PASSWORD': '1234',  # Replace with your database password
         'HOST': 'localhost',  # For local development, use 'localhost' or '127.0.0.1'
         'PORT': '5432',  # Default PostgreSQL port is 5432
     }
