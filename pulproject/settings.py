@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['powerusedlubricants.com','www.powerusedlubricants.com']
 # 'powerusedlubricants.com','www.powerusedlubricants.com'
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-domain.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-domain.com']
 
 # Application definition
 

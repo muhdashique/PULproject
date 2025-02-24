@@ -1,11 +1,10 @@
 from django import forms
+from .models import GalleryImage, FuelRate
 
 
-from django.contrib import admin
-from .models import FuelRate,GalleryImage
 
-from django import forms
-from .models import FuelRate  # Ensure FuelRate model exists in models.py
+
+
 
 class FuelRateForm(forms.ModelForm):
     class Meta:
@@ -16,8 +15,6 @@ class FuelRateForm(forms.ModelForm):
 
 
 
-from django import forms
-from .models import GalleryImage
 
 class GalleryImageForm(forms.ModelForm):
     class Meta:

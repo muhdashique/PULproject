@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 
-from django.db import models
 
 class FuelRate(models.Model):
     country = models.CharField(max_length=100)
@@ -16,7 +15,6 @@ class FuelRate(models.Model):
 
 
 
-from django.db import models
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=100)

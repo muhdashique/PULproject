@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 
-# Create your views here.
+# home page views 
 def index(request):
     fuel_rates = FuelRate.objects.all()
     gallery_images = GalleryImage.objects.all()[:6]
@@ -22,27 +22,23 @@ def index(request):
     
     return render(request, 'index.html', context)
 
-
+# about page views
 def about(request):
     return render(request,'about.html')
 
-
+# gallery page views
 def gallery(request):
     images = GalleryImage.objects.all().order_by('-uploaded_at')
     return render(request, 'gallery.html', {'images': images})
 
 
-
+# contact page views
 def contact(request):
     return render(request,'contact.html')
 
-# Example: Add this decorator to views that require authentication
 
-from django.contrib.auth.decorators import login_required
 
-# Example of a protected view (requires login)
-from django.contrib.auth.decorators import login_required
-
+# admin pannel page views
 @login_required
 def adminpannel(request):
     fuel_rates = FuelRate.objects.all()
@@ -66,7 +62,7 @@ def adminpannel(request):
 
 
 
-
+# login page views
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -82,7 +78,7 @@ def user_login(request):
 
 
 
-
+# edit fuel rate page views
 def edit_fuel_rate(request, pk):
     fuel_rate = get_object_or_404(FuelRate, pk=pk)
     if request.method == 'POST':
@@ -95,7 +91,7 @@ def edit_fuel_rate(request, pk):
     return render(request, 'edit_fuel_rate.html', {'form': form})
 
 
-
+# delete fuel rate page views
 def delete_fuel_rate(request, pk):
     fuel_rate = get_object_or_404(FuelRate, pk=pk)
     if request.method == 'POST':
@@ -104,10 +100,7 @@ def delete_fuel_rate(request, pk):
     return render(request, 'confirm_delete.html', {'fuel_rate': fuel_rate})
 
 
-from django.shortcuts import redirect
-from django.contrib.auth import logout
-from django.http import HttpResponse
-
+# log out views 
 def user_logout(request):
     logout(request)
     # Clear the session
@@ -122,7 +115,7 @@ def user_logout(request):
     return response
     
 
-
+# add image page views
 def add_image(request):
     if request.method == 'POST':
         form = GalleryImageForm(request.POST, request.FILES)
@@ -137,7 +130,7 @@ def add_image(request):
 
 
 
-
+# edit image page views 
 def edit_image(request, image_id):
     image = get_object_or_404(GalleryImage, id=image_id)
     if request.method == 'POST':
@@ -149,6 +142,8 @@ def edit_image(request, image_id):
         form = GalleryImageForm(instance=image)
     return render(request, 'edit_image.html', {'form': form, 'image': image})
 
+
+# delete image page views
 def delete_image(request, image_id):
     image = get_object_or_404(GalleryImage, id=image_id)
     if request.method == 'POST':
